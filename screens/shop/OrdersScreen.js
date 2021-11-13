@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { FlatList, Platform } from 'react-native';
+import { View, FlatList, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import OrderItem from '../../components/shop/OrderItem';
@@ -15,6 +15,7 @@ const OrdersScreen = () => {
             renderItem={(itemData) => (
                 <OrderItem order={itemData.item} />
             )}
+            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         />
     );
 };

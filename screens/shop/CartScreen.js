@@ -54,6 +54,7 @@ const CartScreen = () => {
                         deletable
                     />
                 )}
+                ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             />
         </View>
     );

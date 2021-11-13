@@ -39,7 +39,6 @@ const CartItem = ({ item, onRemove, deletable }) => {
 const styles = StyleSheet.create({
     cartItem: {
         padding: 10,
-        marginBottom: 10,
         borderRadius: 10,
         backgroundColor: 'white',
         flexDirection: 'row',
