@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FlatList, Platform } from 'react-native';
+import { FlatList, Button, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { addToCart } from '../../store/actions/cartActions';
 import ProductItem from '../../components/shop/ProductItem';
 import HeaderButton from '../../components/UI/HeaderButton';
+import colors from '../../constants/colors';
 
 const ProductsOverviewScreen = ({ navigation }) => {
     const products = useSelector((state) => state.products.availableProducts);
@@ -15,18 +16,32 @@ const ProductsOverviewScreen = ({ navigation }) => {
         dispatch(addToCart(product));
     };
 
+    const viewDetailsHandler = (product) => {
+        navigation.navigate('ProductDetail', {
+            productId: product.id,
+            productTitle: product.title
+        });
+    };
+
     return (
         <FlatList
             data={products}
             renderItem={(itemData) => (
                 <ProductItem
                     product={itemData.item}
-                    onViewDetail={() => navigation.navigate('ProductDetail', {
-                        productId: itemData.item.id,
-                        productTitle: itemData.item.title
-                    })}
-                    onAddToCart={() => addToCartHandler(itemData.item)}
-                />
+                    onSelect={() => viewDetailsHandler(itemData.item)}
+                >
+                    <Button
+                        color={colors.primary}
+                        title="View Details"
+                        onPress={() => viewDetailsHandler(itemData.item)}
+                    />
+                    <Button
+                        color={colors.primary}
+                        title="To Cart"
+                        onPress={() => addToCartHandler(itemData.item)}
+                    />
+                </ProductItem>
             )}
         />
     );
