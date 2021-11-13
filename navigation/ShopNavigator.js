@@ -7,6 +7,9 @@ import ProductsNavigator, {
 import OrdersNavigator, {
     navigatorOptions as ordersNavOptions
 } from './OrdersNavigator';
+import AdminNavigator, {
+    navigatorOptions as adminNavOptions
+} from './AdminNavigator';
 
 import drawerNavOptions from '../constants/drawerNavOptions';
 
@@ -23,6 +26,11 @@ const ShopNavigator = () => (
             name="OrdersNavigator"
             component={OrdersNavigator}
             options={ordersNavOptions}
+        />
+        <Drawer.Screen
+            name="AdminNavigator"
+            component={AdminNavigator}
+            options={adminNavOptions}
         />
     </Drawer.Navigator>
 );
