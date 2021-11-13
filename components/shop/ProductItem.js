@@ -54,9 +54,9 @@ const ProductItem = ({ product, onViewDetail, onAddToCart }) => {
 
 const styles = StyleSheet.create({
     productItem: {
+        margin: 20,
         borderRadius: 10,
         backgroundColor: 'white',
-        margin: 20,
         shadowColor: 'black',
         shadowOpacity: 0.26,
         shadowOffset: {

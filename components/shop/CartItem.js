@@ -8,27 +8,29 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const CartItem = ({ product, onRemove }) => {
+const CartItem = ({ item, onRemove, deletable }) => {
     return (
         <View style={styles.cartItem}>
             <View style={styles.itemData}>
-                <Text style={styles.quantity}>{product.quantity} </Text>
-                <Text style={styles.mainText}>{product.productTitle}</Text>
+                <Text style={styles.quantity}>{item.quantity} </Text>
+                <Text style={styles.mainText}>{item.productTitle}</Text>
             </View>
             <View style={styles.itemData}>
                 <Text style={{ ...styles.mainText, ...styles.amount }}>
-                    {product.sum.toFixed(2)}
+                    {item.sum.toFixed(2)}
                 </Text>
-                <TouchableOpacity
-                    onPress={onRemove}
-                    style={styles.deleteButton}
-                >
-                    <Ionicons
-                        name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
-                        size={24}
-                        color="red"
-                    />
-                </TouchableOpacity>
+                {deletable && (
+                    <TouchableOpacity
+                        onPress={onRemove}
+                        style={styles.deleteButton}
+                    >
+                        <Ionicons
+                            name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+                            size={24}
+                            color="red"
+                        />
+                    </TouchableOpacity>
+                )}
             </View>
         </View>
     );
