@@ -8,9 +8,15 @@ import ProductItem from '../../components/shop/ProductItem';
 import HeaderButton from '../../components/UI/HeaderButton';
 import colors from '../../constants/colors';
 
-const UserProductsScreen = () => {
+const UserProductsScreen = ({ navigation }) => {
     const userProducts = useSelector((state) => state.products.userProducts);
     const dispatch = useDispatch();
+
+    const editProductHandler = (productId) => {
+        navigation.navigate('EditProduct', {
+            productId
+        });
+    };
 
     const deleteProductHandler = (productId) => {
         dispatch(deleteProduct(productId));
@@ -22,12 +28,12 @@ const UserProductsScreen = () => {
             renderItem={(itemData) => (
                 <ProductItem
                     product={itemData.item}
-                    onSelect={() => {}}
+                    onSelect={() => editProductHandler(itemData.item.id)}
                 >
                     <Button
                         color={colors.primary}
                         title="Edit"
-                        onPress={() => {}}
+                        onPress={() => editProductHandler(itemData.item.id)}
                     />
                     <Button
                         color={colors.primary}
@@ -48,6 +54,15 @@ export const screenOptions = ({ navigation }) => ({
                 title="Menu"
                 iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
                 onPress={() => navigation.toggleDrawer()}
+            />
+        </HeaderButtons>
+    ),
+    headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item
+                title="Add"
+                iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+                onPress={() => navigation.navigate('EditProduct')}
             />
         </HeaderButtons>
     )

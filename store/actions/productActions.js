@@ -6,3 +6,27 @@ export const deleteProduct = (productId) => {
         payload: productId
     };
 };
+
+export const createProduct = (title, imageUrl, price, description) => {
+    return {
+        type: PRODUCT_ACTIONS.CREATE_PRODUCT,
+        payload: {
+            title,
+            imageUrl,
+            price,
+            description
+        }
+    };
+};
+
+export const updateProduct = (id, title, imageUrl, description) => {
+    return {
+        type: PRODUCT_ACTIONS.UPDATE_PRODUCT,
+        payload: {
+            id,
+            title,
+            imageUrl,
+            description
+        }
+    };
+};

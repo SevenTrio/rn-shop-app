@@ -6,6 +6,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UserProductsScreen, {
     screenOptions as userProductsScreenOptions
 } from '../screens/user/UserProductsScreen';
+import EditProductScreen, {
+    screenOptions as editProductScreenOptions
+} from '../screens/user/EditProductScreen';
 
 import stackNavOptions from '../constants/stackNavOptions';
 
@@ -17,6 +20,11 @@ const AdminNavigator = () => (
             name="UserProducts"
             component={UserProductsScreen}
             options={userProductsScreenOptions}
+        />
+        <Stack.Screen
+            name="EditProduct"
+            component={EditProductScreen}
+            options={editProductScreenOptions}
         />
     </Stack.Navigator>
 );
