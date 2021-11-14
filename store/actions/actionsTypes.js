@@ -6,3 +6,7 @@ export const CART_ACTIONS = {
 export const ORDERS_ACTIONS = {
     ADD_ORDER: 'ADD_ORDER'
 };
+
+export const PRODUCT_ACTIONS = {
+    DELETE_PRODUCT: 'DELETE_PRODUCT'
+};

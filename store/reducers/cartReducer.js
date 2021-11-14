@@ -1,5 +1,9 @@
 import CartItem from '../../models/cartItem';
-import { CART_ACTIONS, ORDERS_ACTIONS } from '../actions/actionsTypes';
+import {
+    CART_ACTIONS,
+    ORDERS_ACTIONS,
+    PRODUCT_ACTIONS
+} from '../actions/actionsTypes';
 
 const initialState = {
     items: {},
@@ -69,6 +73,25 @@ const cartReducer = (state = initialState, action) => {
         }
         case ORDERS_ACTIONS.ADD_ORDER: {
             return initialState;
+        }
+        case PRODUCT_ACTIONS.DELETE_PRODUCT: {
+            const deletedProductId = action.payload;
+            const deletedProduct = state.items[deletedProductId];
+
+            if (!deletedProduct) {
+                return state;
+            }
+
+            const updatedItems = { ...state.items };
+            delete updatedItems[deletedProductId];
+
+            const itemTotal = deletedProduct.sum;
+
+            return {
+                ...state,
+                items: updatedItems,
+                totalAmount: state.totalAmount - itemTotal
+            };
         }
     }
 
